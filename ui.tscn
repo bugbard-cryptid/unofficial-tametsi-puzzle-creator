@@ -13,13 +13,10 @@ script = ExtResource("1_8slqv")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.00308642
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = -0.00308642
-offset_bottom = 33.0
+offset_bottom = 31.0
 grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="MenuBar" type="HBoxContainer" parent="Panel"]
 layout_mode = 2

@@ -18,3 +18,8 @@ size_flags_vertical = 3
 script = ExtResource("2_u5yew")
 
 [node name="Puzzle" type="Node" parent="."]
+
+[node name="TestPolygon" type="Polygon2D" parent="Puzzle"]
+position = Vector2(304.5, 360)
+color = Color(0.509804, 0.505882, 0.509804, 1)
+polygon = PackedVector2Array(22.763, 13.142, 22.763, -13.142, 0, -26.285, -22.763, -13.142, -22.763, 13.142, 0, 26.285)

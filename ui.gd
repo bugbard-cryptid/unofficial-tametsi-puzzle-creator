@@ -1,7 +1,9 @@
 extends Control
 
 var file = FileAccess
-var regex = RegEx.new()
+signal do_save_level(level)
+signal do_load_level(level)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Panel/MenuBar/File.get_popup().id_pressed.connect(_on_file_id_pressed)
@@ -33,27 +35,11 @@ func _on_more_id_pressed(id):
 func _on_file_dialog_file_selected(path):
 	if $FileDialog.file_mode == 4: # save
 		file = file.open(path, FileAccess.WRITE)
-		print("saved!")
+		do_save_level.emit(file)
 
 	elif $FileDialog.file_mode == 0: # load
 		file = file.open(path, FileAccess.READ)
-		load_level(file)
-		# print("loaded: " + file.to_string())
+		do_load_level.emit(file)
 
-func load_level(level):
-	print("\nloading " + level.get_path() + " ...!")
-	regex.compile("(?<=<TITLE>).*?(?=</TITLE>)") # get text between <TITLE> tags; the level title
-	print("title: " + regex.search(FileAccess.get_file_as_string(level.get_path())).get_string())
-	regex.compile("(?<=<ID>).*?(?=</ID>)") # get text between first set of <ID> tags; the level ID
-	print("id: " + regex.search(FileAccess.get_file_as_string(level.get_path())).get_string())
-	
-	# now to generate tiles... this regex gets everything between <GRAPH> tags, the tile data
-	regex.compile("(?s)(?<=<GRAPH>).*(?=</GRAPH>)")
-	var boardData = regex.search(FileAccess.get_file_as_string(level.get_path())).get_string()
-	# search for text between <NODE> tags, information about each tile
-	regex.compile("(?s)(?<=<NODE>).*?(?=</NODE>)")
-	print(str(len(regex.search_all(boardData))) + " tiles")
-	
-	
 func _on_about_text_meta_clicked(meta):
 	OS.shell_open(str(meta))
