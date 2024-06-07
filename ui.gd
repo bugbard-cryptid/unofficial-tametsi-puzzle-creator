@@ -47,8 +47,13 @@ func load_level(level):
 	regex.compile("(?<=<ID>).*?(?=</ID>)") # get text between first set of <ID> tags; the level ID
 	print("id: " + regex.search(FileAccess.get_file_as_string(level.get_path())).get_string())
 	
-	# now to generate tiles...
-	regex.compile("<NODE>")
-
+	# now to generate tiles... this regex gets everything between <GRAPH> tags, the tile data
+	regex.compile("(?s)(?<=<GRAPH>).*(?=</GRAPH>)")
+	var boardData = regex.search(FileAccess.get_file_as_string(level.get_path())).get_string()
+	# search for text between <NODE> tags, information about each tile
+	regex.compile("(?s)(?<=<NODE>).*?(?=</NODE>)")
+	print(str(len(regex.search_all(boardData))) + " tiles")
+	
+	
 func _on_about_text_meta_clicked(meta):
 	OS.shell_open(str(meta))
