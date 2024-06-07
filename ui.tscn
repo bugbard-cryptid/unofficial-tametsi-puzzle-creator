@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://u3ntws768bcl"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_8slqv"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8slqv")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.00308642
+anchor_right = 1.0
+anchor_bottom = -0.00308642
+offset_bottom = 33.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuBar" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="File" type="MenuButton" parent="Panel/MenuBar"]
+layout_mode = 2
+text = "File"
+item_count = 4
+popup/item_0/text = "New"
+popup/item_0/id = 0
+popup/item_1/text = "Open"
+popup/item_1/id = 1
+popup/item_2/text = "Save"
+popup/item_2/id = 2
+popup/item_3/text = "Save as..."
+popup/item_3/id = 3
+
+[node name="Edit" type="MenuButton" parent="Panel/MenuBar"]
+layout_mode = 2
+text = "Edit"
+item_count = 2
+popup/item_0/text = "Undo"
+popup/item_0/id = 0
+popup/item_1/text = "Redo"
+popup/item_1/id = 1
+
+[node name="More" type="MenuButton" parent="Panel/MenuBar"]
+layout_mode = 2
+text = "More"
+item_count = 1
+popup/item_0/text = "About"
+popup/item_0/id = 0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.puz")
+use_native_dialog = true
+
+[node name="About" type="Popup" parent="."]
+title = "About"
+initial_position = 1
+size = Vector2i(660, 299)
+borderless = false
+
+[node name="AboutText" type="RichTextLabel" parent="About"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+
+[center][font_size=40][tornado radius=5 freq=5][rainbow sat=0.9 val=1.5 freq=0.2]WREN'S TAMETSI
+LEVEL EDITOR !!!!![/rainbow][/tornado][/font_size]
+
+[font_size=20]by wren, look at [url=https://bugbard.neocities.org][color=#89e]my neocities[/color][/url] (it is old, sorry!)
+this is not affiliated with Grip Top Games, go play [url=http://griptopgames.com/][color=#89e]Tametsi![/color][/url][/font_size]
+[/center]
+
+"
+
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="meta_clicked" from="About/AboutText" to="." method="_on_about_text_meta_clicked"]
