@@ -10,12 +10,6 @@ func _ready():
 	$TopPanel/MenuBar/More.get_popup().id_pressed.connect(_on_more_id_pressed)
 	$Camera.zoom_changed.connect(on_zoom_changed)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_file_id_pressed(id):
 	if id == 0: # create new file
 		$FileDialog.file_mode = 4
@@ -36,11 +30,11 @@ func _on_more_id_pressed(id):
 func _on_file_dialog_file_selected(path):
 	if $FileDialog.file_mode == 4: # save
 		file = file.open(path, FileAccess.WRITE)
-		do_save_level.emit(file.get_path())
+		do_save_level.emit(file)
 
 	elif $FileDialog.file_mode == 0: # load
 		file = file.open(path, FileAccess.READ)
-		do_load_level.emit(file.get_path())
+		do_load_level.emit(file)
 
 func _on_about_text_meta_clicked(meta):
 	OS.shell_open(str(meta))
