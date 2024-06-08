@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ta3myykjufep"]
+[gd_scene load_steps=3 format=3 uid="uid://ta3myykjufep"]
 
 [ext_resource type="PackedScene" uid="uid://u3ntws768bcl" path="res://ui.tscn" id="1_j44lh"]
 [ext_resource type="Script" path="res://editor.gd" id="1_nj3cd"]
-[ext_resource type="Script" path="res://CameraMovement.gd" id="2_u5yew"]
 
 [node name="Editor" type="Node"]
 script = ExtResource("1_nj3cd")
@@ -11,10 +10,5 @@ script = ExtResource("1_nj3cd")
 follow_viewport_scale = 0.534
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("1_j44lh")]
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_u5yew")
 
 [node name="Puzzle" type="Node" parent="."]

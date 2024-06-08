@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 var file = FileAccess
 signal do_save_level(level)
@@ -6,8 +6,9 @@ signal do_load_level(level)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Panel/MenuBar/File.get_popup().id_pressed.connect(_on_file_id_pressed)
-	$Panel/MenuBar/More.get_popup().id_pressed.connect(_on_more_id_pressed)
+	$TopPanel/MenuBar/File.get_popup().id_pressed.connect(_on_file_id_pressed)
+	$TopPanel/MenuBar/More.get_popup().id_pressed.connect(_on_more_id_pressed)
+	$Camera.zoom_changed.connect(on_zoom_changed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,11 +36,14 @@ func _on_more_id_pressed(id):
 func _on_file_dialog_file_selected(path):
 	if $FileDialog.file_mode == 4: # save
 		file = file.open(path, FileAccess.WRITE)
-		do_save_level.emit(file)
+		do_save_level.emit(file.get_path())
 
 	elif $FileDialog.file_mode == 0: # load
 		file = file.open(path, FileAccess.READ)
-		do_load_level.emit(file)
+		do_load_level.emit(file.get_path())
 
 func _on_about_text_meta_clicked(meta):
 	OS.shell_open(str(meta))
+
+func on_zoom_changed(zoom):
+	$BottomPanel/Zoom.text = str(zoom*100) + "%"
