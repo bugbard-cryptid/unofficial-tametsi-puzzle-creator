@@ -7,7 +7,7 @@ signal do_load_level(level)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$TopPanel/MenuBar/File.get_popup().id_pressed.connect(_on_file_id_pressed)
-	$TopPanel/MenuBar/More.get_popup().id_pressed.connect(_on_more_id_pressed)
+	$TopPanel/MenuBar/Help.get_popup().id_pressed.connect(_on_help_id_pressed)
 	$Camera.zoom_changed.connect(on_zoom_changed)
 
 func _on_file_id_pressed(id):
@@ -23,8 +23,11 @@ func _on_file_id_pressed(id):
 	else:
 		print("this option doesn't do anything yet!!!!!!!!")
 
-func _on_more_id_pressed(id):
+func _on_help_id_pressed(id):
+	print(id)
 	if id == 0:
+		$Controls.visible = true
+	if id == 1:
 		$About.visible = true
 
 func _on_file_dialog_file_selected(path):
