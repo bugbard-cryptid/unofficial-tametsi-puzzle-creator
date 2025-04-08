@@ -10,14 +10,17 @@ config_version=5
 
 [application]
 
-config/name="Unofficial Tametsi Puzzle Creator"
+config/name="Minefield Maker"
+config/description="an unofficial level editor for Tametsi, a game by Grip Top Games. this program is not affiliated with Grip Top Games!"
 run/main_scene="res://scenes/editor.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [display]
 
 window/subwindows/embed_subwindows=false
+window/stretch/aspect="ignore"
 
 [input]
 
@@ -63,5 +66,5 @@ right={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.0784314, 0, 0.137255, 1)
 anti_aliasing/quality/msaa_2d=2
+environment/defaults/default_clear_color=Color(0.0784314, 0, 0.137255, 1)

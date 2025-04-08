@@ -1,12 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://u3ntws768bcl"]
 
-[ext_resource type="Script" path="res://scripts/interface.gd" id="1_7uc1d"]
-[ext_resource type="Script" path="res://scripts/CameraMovement.gd" id="2_eejyx"]
+[ext_resource type="Script" uid="uid://bum7ugktws44m" path="res://scripts/interface.gd" id="1_7uc1d"]
+[ext_resource type="Script" uid="uid://b8dkub78f8er0" path="res://scripts/CameraMovement.gd" id="2_eejyx"]
 
-[node name="Interface" type="Node"]
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7uc1d")
 
 [node name="TopPanel" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 31.0
@@ -20,6 +27,7 @@ layout_mode = 2
 text = "File"
 item_count = 4
 popup/item_0/text = "New"
+popup/item_0/id = 0
 popup/item_1/text = "Open"
 popup/item_1/id = 1
 popup/item_2/text = "Save"
@@ -32,14 +40,16 @@ layout_mode = 2
 text = "Edit"
 item_count = 2
 popup/item_0/text = "Undo"
+popup/item_0/id = 0
 popup/item_1/text = "Redo"
 popup/item_1/id = 1
 
 [node name="Help" type="MenuButton" parent="TopPanel/MenuBar"]
 layout_mode = 2
-text = "More"
+text = "Help"
 item_count = 2
 popup/item_0/text = "Controls"
+popup/item_0/id = 0
 popup/item_1/text = "About"
 popup/item_1/id = 1
 
@@ -65,16 +75,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "
+text = "[center][font_size=40][tornado radius=3 freq=7][rainbow sat=0.8 val=1.5 freq=0.2]Minefield Maker[/rainbow][/tornado][/font_size]
 
-[center][font_size=40][tornado radius=5 freq=5][rainbow sat=0.9 val=1.5 freq=0.2]WREN'S TAMETSI
-PUZZLE CREATOR !!!!![/rainbow][/tornado][/font_size]
+[font_size=20]created by wren - check out my [url=https://bugbard.neocities.org][color=#89e]neocities[/color][/url] webpage, perhaps...!
 
-[font_size=20]by wren, look at [url=https://bugbard.neocities.org][color=#89e]my neocities[/color][/url] (it is old, sorry!)
-this is not affiliated with Grip Top Games, go play [url=http://griptopgames.com/][color=#89e]Tametsi![/color][/url][/font_size]
-[/center]
-
-"
+this program is not affiliated with Grip Top Games!
+go play [url=http://griptopgames.com/][color=#89e]Tametsi![/color][/url][/font_size]
+[/center]"
+vertical_alignment = 1
 
 [node name="Controls" type="Popup" parent="."]
 auto_translate_mode = 1
@@ -90,13 +98,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "LMB+DRAG or ARROWS or WASD : pan camera"
+text = "LMB+DRAG or ARROWS or WASD : pan camera
+CTRL+S : save level*
+CTRL+O : open level*
+CTRL+N : new level*
+
+* not yet implemented!"
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("2_eejyx")
 
 [node name="BottomPanel" type="PanelContainer" parent="."]
 visible = false
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
